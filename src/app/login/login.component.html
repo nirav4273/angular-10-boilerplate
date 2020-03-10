@@ -1,0 +1,31 @@
+<div class="login-container container">
+  <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input 
+        type="email" 
+        class="form-control" 
+        id="email" 
+        placeholder="Enter email"
+        formControlName="email"
+      />
+      <div *ngIf="isSubmitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">email is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input 
+        type="password" 
+        class="form-control" 
+        id="password" 
+        placeholder="Password"
+        formControlName="password"
+      />
+      <div *ngIf="isSubmitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">password is required</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>

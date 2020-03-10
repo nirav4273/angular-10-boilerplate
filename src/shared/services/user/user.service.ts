@@ -28,6 +28,10 @@ export class UserService {
   	this.router.navigateByUrl("/login");
   }
 
+  setLoggedIn(){
+  	this.isUserLoggedIn.next(true);
+  }
+
   get isLoggedIn(){
   	return this.isUserLoggedIn.asObservable();
   }

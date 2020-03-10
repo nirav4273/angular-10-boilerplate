@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import { StorageService } from 'src/shared/services/storage/storage.service';
 import { AuthService } from 'src/shared/services/auth/auth.service';
 import { LoaderService } from 'src/shared/services/loader/loader.service';
+import { UserService } from 'src/shared/services/user/user.service';
+
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private storage: StorageService,
     private router: Router,
     private authService: AuthService,
-    private loader: LoaderService
+    private loader: LoaderService,
+    private user: UserService
   ) { }
 
   ngOnInit(): void {
@@ -48,22 +51,18 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.form.invalid) {
         return;
     }
-    /*
-    {
-    "email": "eve.holt@reqres.in",
-    "password": "cityslicka"
-    }
-    */
+
     let obj = {
       "email": "eve.holt@reqres.in",
       "password": "cityslicka"
     };
+
     this.loader.setLoader(true);
     this.authService.login(obj).subscribe((res:any) => {
-      console.log(res);
       this.loader.setLoader(false);
+      this.user.setLoggedIn();
       this.storage.set("user", JSON.stringify(res));
-      this.router.navigateByUrl("/"); e
+      this.router.navigateByUrl("/");
     }, err => {
       console.log(err);
       this.loader.setLoader(false);

@@ -25,6 +25,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   	this.user.logout();
   }
 
+  get loggedIn(): boolean{
+  	return this.isLoggedIn;
+  }
+
   ngOnDestroy(){
   	this.subscription.unsubscribe();
   }

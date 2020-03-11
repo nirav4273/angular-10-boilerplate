@@ -1,4 +1,6 @@
 <ul class="nav justify-content-end">
+  <div>{{ 'hello' | translate }}</div>
+  <app-language></app-language>
   <li class="nav-item" *ngIf="loggedIn">
     <a class="nav-link" routerLinkActive="active" routerLink="/">Home
     </a>
